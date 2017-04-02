@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/trivia", "MainController@receiver")->middleware("verify");
+Route::get("/trivia", "MainController@receive")->middleware("verify");
