@@ -36,6 +36,6 @@ class MainController extends Controller
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($messageData));
-        Log::info(curl_exec($ch));
+        Log::info(print_r(curl_exec($ch), true));
     }
 }
