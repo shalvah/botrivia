@@ -20,7 +20,6 @@ class VerifyMiddleware
             && $request->input("hub_verify_token") === env("MESSENGER_VERIFY_TOKEN")) {
             return response($request->input("hub_challenge"), 200);
         }
-        Log::info(print_r($request, true));
         return $next($request);
     }
 }

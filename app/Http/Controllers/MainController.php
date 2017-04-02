@@ -9,6 +9,7 @@ class MainController extends Controller
 {
     public function receive(Request $request)
     {
+        Log::info(print_r($request, true));
         $data = $request->all();
 
         //get the user id and reply
