@@ -15,9 +15,10 @@ class VerifyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->input("hub.mode") === "subscribe"
-            && $request->input("hub.verify_token") === env("MESSENGER_VERIFY_TOKEN")) {
-            return response($request->input("hub.challenge"), 200);
+        $data = $request->all();
+        if ($data["hub.mode"] === "subscribe"
+            && $data["hub.verify_token"] === env("MESSENGER_VERIFY_TOKEN")) {
+            return response($data["hub.challenge"], 200);
         }
         return $next($request);
     }
