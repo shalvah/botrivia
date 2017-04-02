@@ -8,6 +8,6 @@ class MainController extends Controller
 {
     public function receive(Request $request)
     {
-
+        return response("Hello");
     }
 }
