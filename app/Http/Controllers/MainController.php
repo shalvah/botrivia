@@ -7,9 +7,13 @@ use Illuminate\Support\Facades\Log;
 
 class MainController extends Controller
 {
-    public function receive(Request $request)
+    public function __construct(Request $request) {
+        Log::info(print_r($request->all(), true));
+
+    }
+
+    public function receive()
     {
-        Log::info(print_r($request, true));
         $data = $request->all();
 
         //get the user id and reply
