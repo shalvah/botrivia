@@ -55,7 +55,7 @@ class Trivia
     public function toMessage()
     {
         //compose message
-        $text = "Question: $this->question";
+        $text = html_entity_decode("Question: $this->question");
 
         $response = [
             "attachment" => [
