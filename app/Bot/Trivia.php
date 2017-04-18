@@ -18,7 +18,7 @@ class Trivia
     {
         $this->question = $data["question"];
         $answer = $data["correct_answer"];
-        $this->options = $data["incorrect_answers"];
+        $this->options = array_slice($data["incorrect_answers"], 0, 2);
         $this->options[] = $answer;
         shuffle($this->options);
         $this->solution = $answer;
