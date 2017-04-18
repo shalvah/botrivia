@@ -14,7 +14,7 @@ class Trivia
     private $options;
     private $solution;
 
-    public function __construct($data)
+    public function __construct(array $data)
     {
         $this->question = $data["question"];
         $answer = $data["correct_answer"];

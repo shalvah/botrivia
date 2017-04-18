@@ -18,15 +18,16 @@ class Bot
     public function extractDataFromMessage()
     {
         $matches = [];
+        $text = $this->messaging->getMessage()->getText();
         //single letter message means an answer
-        if (preg_match("/^(\\w)\$/i", $this->messaging->text, $matches)) {
+        if (preg_match("/^(\\w)\$/i", $text, $matches)) {
             return [
                 "type" => Trivia::$ANSWER,
                 "data" => [
                     "answer" => $matches[0]
                 ]
             ];
-        } else if (preg_match("/^new|next\$/i", $this->messaging->text, $matches)) {
+        } else if (preg_match("/^new|next\$/i", $text, $matches)) {
             return [
                 "type" => Trivia::$NEW_QUESTION,
                 "data" => []
@@ -45,7 +46,7 @@ class Bot
         } else if (typeOf($data) == "string") {
             $data = ["text" => $data];
         }
-        $id = $this->messaging->senderId;
+        $id = $this->messaging->getSenderId();
         $this->sendMessage($id, $data);
     }
 
