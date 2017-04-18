@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Cache;
 
 class BotHandler implements ShouldQueue
 {
@@ -40,7 +41,11 @@ class BotHandler implements ShouldQueue
         if ($custom["type"] == Trivia::$NEW_QUESTION) {
             $bot->reply(Trivia::getNew());
         } else if ($custom["type"] == Trivia::$ANSWER) {
-            $bot->reply(Trivia::checkAnswer($custom["data"]["answer"]));
+            if (Cache::has("solution")) {
+                $bot->reply(Trivia::checkAnswer($custom["data"]["answer"]));
+            } else {
+                $bot->reply("Looks like that question has already been answered. Try \"new\" for a new question");
+            }
         } else {
             $bot->reply("I don't understand. Try \"new\" for a new question");
         }
