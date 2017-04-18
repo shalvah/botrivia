@@ -49,7 +49,16 @@ class Trivia
         }
         //clear solution
         Cache::forget("solution");
-        return $response;
+        return [
+            "text" => $response,
+            "quick_replies" => [
+                [
+                    "content_type" => "text",
+                    "title" => "Next question",
+                    "payload" => "new"
+                ]
+            ]
+        ];
     }
 
     public function toMessage()
