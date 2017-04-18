@@ -43,7 +43,7 @@ class Bot
     {
         if (method_exists($data, "toMessage")) {
             $data = $data->toMessage();
-        } else if (typeOf($data) == "string") {
+        } else if (gettype($data) == "string") {
             $data = ["text" => $data];
         }
         $id = $this->messaging->getSenderId();
