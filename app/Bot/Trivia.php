@@ -64,14 +64,14 @@ class Trivia
     public function toMessage()
     {
         //compose message
-        $text = html_entity_decode("Question: $this->question");
+        $text = htmlspecialchars_decode("Question: $this->question", ENT_QUOTES | ENT_HTML5);
 
         $response = [
             "attachment" => [
                 "type" => "template",
                 "payload" => [
                     "template_type" => "button",
-                    "text" => addslashes($text),
+                    "text" => $text,
                     "buttons" => []
                 ]
             ]
