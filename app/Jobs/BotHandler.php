@@ -15,14 +15,15 @@ class BotHandler implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $messaging;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Messaging $messaging)
     {
-        //
+        $this->messaging = $messaging;
     }
 
     /**
@@ -30,7 +31,7 @@ class BotHandler implements ShouldQueue
      *
      * @param Messaging $messaging
      */
-    public function handle($messaging)
+    public function handle(Messaging $messaging)
     {
         if ($messaging->getType() == "message") {
             $bot = new Bot($messaging);
