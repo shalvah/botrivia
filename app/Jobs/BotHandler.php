@@ -31,10 +31,10 @@ class BotHandler implements ShouldQueue
      *
      * @param Messaging $messaging
      */
-    public function handle(Messaging $messaging)
+    public function handle()
     {
-        if ($messaging->getType() == "message") {
-            $bot = new Bot($messaging);
+        if ($this->messaging->getType() == "message") {
+            $bot = new Bot($this->messaging);
             $custom = $bot->extractDataFromMessage();
             //a request for a new question
             if ($custom["type"] == Trivia::$NEW_QUESTION) {
