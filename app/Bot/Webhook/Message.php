@@ -14,8 +14,8 @@ class Message
     {
          $this->mId = $data["mid"];
          $this->text = isset($data["text"]) ? $data["text"] : "";
-         $this->attachments = isset($data["attachments"]) ? $data["attachments"] : "";
-         $this->quickReply = isset($data["quick_reply"]) ? $data["quick_reply"] : "";
+        $this->attachments = isset($data["attachments"]) ? $data["attachments"] : [];
+        $this->quickReply = isset($data["quick_reply"]) ? $data["quick_reply"] : [];
     }
 
     public function getId()
