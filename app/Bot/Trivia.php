@@ -55,15 +55,31 @@ class Trivia
     public function toMessage()
     {
         //compose message
-        $response = "Question: $this->question.\nOptions:";
+        $text = "Question: $this->question";
+
+        $response = [
+            "attachment" => [
+                "type" => "template",
+                "payload" => [
+                    "template_type" => "button",
+                    "text" => $text,
+                    "buttons" => []
+                ]
+            ]
+        ];
+
         $letters = ["a", "b", "c", "d"];
         foreach ($this->options as $i => $option) {
-            $response.= "\n{$letters[$i]}: $option";
+            $response["attachment"]["payload"]["buttons"][] = [
+                "type" => "postback",
+                "title" => "{$letters[$i]}: $option",
+                "payload" => "{$letters[$i]}"
+            ];
             if($this->solution == $option) {
                 Cache::forever("solution", $letters[$i]);
             }
         }
 
-        return ["text" => $response];
+        return $response;
     }
 }

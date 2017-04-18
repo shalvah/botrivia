@@ -52,12 +52,13 @@ class Bot
 
     public function extractDataFromPostback()
     {
-        $matches = [];
         $payload = $this->messaging->getPostback()->getPayload();
 
         return [
-            "type" => "unknown",
-            "data" => []
+            "type" => Trivia::$ANSWER,
+            "data" => [
+                "answer" => $payload
+            ]
         ];
     }
 
