@@ -13,7 +13,7 @@ class Messaging
     private $message;
     private $type;
 
-    public function __construct($data)
+    public function __construct(array $data)
     {
         $this->senderId = $data["sender"]["id"];
         $this->recipientId = $data["recipient"]["id"];

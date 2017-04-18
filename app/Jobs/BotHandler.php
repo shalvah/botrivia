@@ -30,7 +30,7 @@ class BotHandler implements ShouldQueue
      *
      * @param Messaging $messaging
      */
-    public function handle(Messaging $messaging)
+    public function handle($messaging)
     {
         if ($messaging->getType() == "message") {
             $bot = new Bot($messaging);

@@ -17,7 +17,7 @@ class MainController extends Controller
                 dispatch(new BotHandler($messaging));
             }
         }
-        return response();
+        return response("", 200);
     }
 
 }
