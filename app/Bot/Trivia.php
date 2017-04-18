@@ -81,7 +81,7 @@ class Trivia
         foreach ($this->options as $i => $option) {
             $response["attachment"]["payload"]["buttons"][] = [
                 "type" => "postback",
-                "title" => "{$letters[$i]}: $option",
+                "title" => "{$letters[$i]}:" . htmlspecialchars_decode($option, ENT_QUOTES | ENT_HTML5),
                 "payload" => "{$letters[$i]}"
             ];
             if($this->solution == $option) {
