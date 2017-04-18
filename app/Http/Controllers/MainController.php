@@ -13,12 +13,12 @@ class MainController extends Controller
     {
         $entries = Entry::getEntries($request);
         Log::info(print_r($entries, true));
-        //foreach ($entries as $entry) {
+        /*foreach ($entries as $entry) {
             $messagings = $entry->getMessagings();
             foreach ($messagings as $messaging) {
                 dispatch(new BotHandler($messaging));
             }
-        }
+        }*/
         return response("", 200);
     }
 
