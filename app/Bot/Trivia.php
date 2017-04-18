@@ -62,7 +62,7 @@ class Trivia
                 "type" => "template",
                 "payload" => [
                     "template_type" => "button",
-                    "text" => $text,
+                    "text" => addslashes($text),
                     "buttons" => []
                 ]
             ]
