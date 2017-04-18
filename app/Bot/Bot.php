@@ -15,6 +15,17 @@ class Bot
         $this->messaging = $messaging;
     }
 
+    public function extractData()
+    {
+        $type = $this->messaging->getType();
+        if ($type == "message") {
+            return $this->extractDataFromMessage();
+        } else if ($type == "postback") {
+            return $this->extractDataFromPostback();
+        }
+        return [];
+    }
+
     public function extractDataFromMessage()
     {
         $matches = [];
@@ -39,6 +50,17 @@ class Bot
         ];
     }
 
+    public function extractDataFromPostback()
+    {
+        $matches = [];
+        $payload = $this->messaging->getPostback()->getPayload();
+
+        return [
+            "type" => "unknown",
+            "data" => []
+        ];
+    }
+
     public function reply($data)
     {
         if (method_exists($data, "toMessage")) {
@@ -49,6 +71,7 @@ class Bot
         $id = $this->messaging->getSenderId();
         $this->sendMessage($id, $data);
     }
+
 
     private function sendMessage($recipientId, $message)
     {
