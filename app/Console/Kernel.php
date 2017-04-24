@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\SetGreetingText::class
+        Commands\SetGreetingText::class,
+        Commands\SetGetStartedButton::class,
     ];
 
     /**
