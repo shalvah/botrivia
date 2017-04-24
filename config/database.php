@@ -58,11 +58,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => $dbUrl ? $dbUrl["host"] : env("DB_HOST"),
-            'port' => $dbUrl ? $dbUrl["port"] : env("DB_PORT"),
-            'database' => $dbUrl ? ltrim($dbUrl["path"], '/') : env("DB_DATABASE"),
-            'username' => $dbUrl ? $dbUrl["user"] : env("DB_USERNAME"),
-            'password' => $dbUrl ? $dbUrl["pass"] : env("DB_PASSWORD"),
+            'host' => isset($dbUrl["host"]) ? $dbUrl["host"] : env("DB_HOST"),
+            'port' => isset($dbUrl["port"]) ? $dbUrl["port"] : env("DB_PORT"),
+            'database' => isset($dbUrl["path"]) ? ltrim($dbUrl["path"], '/') : env("DB_DATABASE"),
+            'username' => isset($dbUrl["user"]) ? $dbUrl["user"] : env("DB_USERNAME"),
+            'password' => isset($dbUrl["pass"]) ? $dbUrl["pass"] : env("DB_PASSWORD"),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
