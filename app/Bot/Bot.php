@@ -60,11 +60,22 @@ class Bot
     {
         $payload = $this->messaging->getPostback()->getPayload();
 
+        if (preg_match("/^(\\w)\$/i", $payload)) {
+            return [
+                "type" => Trivia::$ANSWER,
+                "data" => [
+                    "answer" => $payload
+                ]
+            ];
+        } else if ($payload === "get-started") {
+            return [
+                "type" => "get-started",
+                "data" => []
+            ];
+        }
         return [
-            "type" => Trivia::$ANSWER,
-            "data" => [
-                "answer" => $payload
-            ]
+            "type" => "unknown",
+            "data" => []
         ];
     }
 
