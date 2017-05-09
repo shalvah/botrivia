@@ -47,7 +47,7 @@ class BotHandler implements ShouldQueue
                 $bot->reply("Looks like that question has already been answered. Try \"new\" for a new question");
             }
         } else if ($custom["type"] == "get-started") {
-            $bot->reply("Hi there! Welcome to botrivia! You can type \"new\" to get a new question, but why don’t we start with this one?");
+            $bot->sendWelcomeMessage();
             $bot->reply(Trivia::getNew());
         } else {
             $bot->reply("I don't understand. Try \"new\" for a new question");

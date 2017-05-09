@@ -79,6 +79,23 @@ class Bot
         ];
     }
 
+    public function sendWelcomeMessage()
+    {
+        $name = $this->getUserDetails()["first_name"];
+        $this->reply("Hi there, $name! Welcome to botrivia! You can type \"new\" to get a new question, but why don’t we start with this one?");
+    }
+
+    private function getUserDetails()
+    {
+        $id = $this->messaging->getSenderId();
+        $ch = curl_init("https://graph.facebook.com/v2.6/$id?access_token=" . env("PAGE_ACCESS_TOKEN"));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+
+        return json_decode(curl_exec($ch), true);
+    }
+
     public function reply($data)
     {
         if (method_exists($data, "toMessage")) {
@@ -89,7 +106,6 @@ class Bot
         $id = $this->messaging->getSenderId();
         $this->sendMessage($id, $data);
     }
-
 
     private function sendMessage($recipientId, $message)
     {
