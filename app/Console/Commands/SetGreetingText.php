@@ -52,7 +52,6 @@ class SetGreetingText extends Command
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
-        $result = json_decode(curl_exec($ch), true);
-        $this->info(print_r($result));
+        $this->info(curl_exec($ch));
     }
 }
